@@ -25,4 +25,3 @@ spec:
          image: leaddevops/kubeserve:v1
          ports:
          - containerPort: 80
-
