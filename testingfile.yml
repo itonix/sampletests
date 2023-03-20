@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kubeserverdeployment
+  name: kubeserve
   labels:
     app: kubeserve
 spec:
