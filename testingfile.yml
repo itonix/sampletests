@@ -1,41 +1,28 @@
 apiVersion: apps/v1
-
-kind: ReplicaSet
-
+kind: Deployment
 metadata:
-
-  name: frontend
-
+  name: kubeserver_deployment
   labels:
-
-    app: guestbook
-
-    tier: frontend
-
+    app: kubeserve
 spec:
-
-  # modify replicas according to your case
-
   replicas: 3
-
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   selector:
-
     matchLabels:
-
-      tier: frontend
-
+      app: kubeserve
   template:
-
     metadata:
-
+      name: kubeserve
       labels:
-
-        tier: frontend
-
+        app: kubeserve
     spec:
-
       containers:
+       - name: app
+         image: leaddevops/kubeserve:v1
+         ports:
+         - containerPort: 80
 
-      - name: php-redis
-
-        image: gcr.io/google_samples/gb-frontend:v3
